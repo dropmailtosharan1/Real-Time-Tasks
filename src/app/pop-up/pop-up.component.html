@@ -1,0 +1,13 @@
+
+<div class="wrapper">
+    <button class="btn btn-primary" (click)="openPopup()">Pop-up</button>
+</div>
+
+<div class="over-lay" *ngIf="showPopup" (click)="closeOverlay($event)">
+    <div class="content">
+        <div class="close" (click)="closePopup()">&times;</div>
+        Username : <input type="text" class="form-control">
+        Password : <input type="password" class="form-control">
+        <button class="btn btn-primary mt-4">Sign In</button>
+    </div>
+</div>
