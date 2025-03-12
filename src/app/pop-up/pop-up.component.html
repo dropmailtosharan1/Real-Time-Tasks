@@ -4,10 +4,18 @@
 </div>
 
 <div class="over-lay" *ngIf="showPopup" (click)="closeOverlay($event)">
-    <div class="content">
+    <div class="content form">
         <div class="close" (click)="closePopup()">&times;</div>
-        Username : <input type="text" class="form-control">
-        Password : <input type="password" class="form-control">
-        <button class="btn btn-primary mt-4">Sign In</button>
+      <div class="field">
+        <label for="text"> Username :</label>
+        <input type="text" class="form-control">
+      </div>
+        <div class="field">
+            <label for=""> Password :</label> 
+        <input [type]="showPassword ? 'text':'password'" class="form-control">
+        <i (click)="toggleShowPassword()" class="fa-regular fa-eye eye" *ngIf="!showPassword"></i>
+        <i (click)="toggleShowPassword()" class="fa-regular fa-eye-slash eye" *ngIf="showPassword"></i>
+        </div>
+         <button class="btn btn-primary mt-4">Sign In</button>
     </div>
 </div>

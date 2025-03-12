@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class PopUpComponent {
   showPopup = false;
+  showPassword = false;
 
   openPopup() {
     this.showPopup = true;
@@ -18,7 +19,7 @@ export class PopUpComponent {
   closePopup() {
     this.showPopup = false;
   }
-  
+
   // New method to close the overlay
   // closeOverlay(event: MouseEvent) {
   //   if (event.target === event.currentTarget) {
@@ -32,5 +33,9 @@ export class PopUpComponent {
       this.showPopup = false;
     }
     // this.showPopup= false;
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 }
