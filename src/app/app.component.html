@@ -1,3 +1,12 @@
-<app-crud></app-crud>
+<!-- <app-crud></app-crud>
 <app-pop-up></app-pop-up>
-<app-test1></app-test1>
+<app-test1></app-test1> -->
+
+<ng-container *ngIf="showHeader">
+  <app-header></app-header>
+</ng-container>
+
+<div class="content-wrap w-100">
+  <router-outlet></router-outlet>
+</div>
+

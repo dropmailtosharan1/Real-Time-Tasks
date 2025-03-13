@@ -3,14 +3,39 @@ import { PopUpComponent } from './pop-up/pop-up.component';
 import { CommonModule } from '@angular/common';
 import { Test1Component } from './test1/test1.component';
 import { CrudComponent } from './crud/crud.component';
+import { NavigationEnd, RouterModule } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CrudComponent, PopUpComponent, CommonModule, Test1Component],
+  imports: [
+    RouterModule,
+    CrudComponent,
+    PopUpComponent,
+    CommonModule,
+    Test1Component,
+    HeaderComponent
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'Real-Time-Tasks';
+
+  showHeader=true;
+
+  constructor(private router:Router){
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url == '/login') {
+          this.showHeader = false;
+        } else {
+          this.showHeader = true;
+        }
+      }
+    });
+  }
+ 
 }
