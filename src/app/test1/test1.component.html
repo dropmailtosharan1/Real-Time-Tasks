@@ -1,0 +1,55 @@
+<div class="container mt-3">
+<ng-container *ngFor="let language of languages">
+    <label for="{{language}}">
+        <input type="checkbox" value="{{language}}" (change)="updateLanguages($event)">
+        {{language}}
+    </label>
+</ng-container>
+
+<div class="display mt-5" *ngIf="testForm.get('languages')?.value?.length">
+    {{testForm.get('languages')?.value | json}}
+</div>
+
+</div>
+
+<!-- 
+<div class="dropdown">
+    <select (change)="updateDistricts($event)">
+        <option value="-1">Select State</option>
+        <ng-container *ngFor="let state of states">
+            <option [value]="state.id">{{state.name}}</option>
+        </ng-container>
+    </select>
+
+    <select>
+        <option value="-1">Select District</option>
+        <ng-container *ngFor="let district of filteredDistricts">
+            <option [value]="district.id">{{district.name}}</option>
+        </ng-container>
+    </select>
+</div>
+
+<hr> -->
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="stateSelect" class="form-label">Select State</label>
+            <select id="stateSelect" class="form-select" (change)="updateDistricts($event)">
+                <option value="-1">Select State</option>
+                <ng-container *ngFor="let state of states">
+                    <option [value]="state.id">{{ state.name }}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="districtSelect" class="form-label">Select District</label>
+            <select id="districtSelect" class="form-select">
+                <option value="-1">Select District</option>
+                <ng-container *ngFor="let district of filteredDistricts">
+                    <option [value]="district.id">{{ district.name }}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+</div>
