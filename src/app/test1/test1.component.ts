@@ -10,18 +10,15 @@ import { log } from 'console';
   styleUrl: './test1.component.scss',
 })
 export class Test1Component implements OnInit {
-  
-   // Multiple Check box
-   testForm;
-   languages=['C','C++','Java','Python','Angular','React','Vue'];
-  constructor(private formBuilder:FormBuilder) {
+  // Multiple Check box
+  testForm;
+  languages = ['C', 'C++', 'Java', 'Python', 'Angular', 'React', 'Vue'];
+  constructor(private formBuilder: FormBuilder) {
     this.testForm = this.formBuilder.group({
-      languages: this.formBuilder.array([
+      languages: this.formBuilder.array([]),
+    }); 
+  }  
 
-      ])
-  });
-  }
-  
   updateLanguages(event: any) {
     console.log(event.target.checked);
     let languageArray = this.testForm.get('languages') as FormArray;
@@ -76,7 +73,4 @@ export class Test1Component implements OnInit {
       return district.state_id == stateId;
     });
   }
-
-
-
 }
