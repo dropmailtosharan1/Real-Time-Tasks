@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div class="container m-5">
+    <h1 class="text-primary text-center">Preview Images</h1>
+
+    <div class="w-50">
+        <input class="form-control" type="file" multiple (change)="saveImages($event)" />
+        <!-- <button class="btn btn-primary mt-2" (click)="uploadImages()">Upload Images</button> -->
+    </div>
+
+    <div class="preview" *ngIf="uploads.length > 0">
+        <div *ngFor="let upload of uploads; let i = index" class="img-box border">
+            <div>
+                <img [src]="upload" alt="image" class="img-fluid" />
+                <!-- <img src="{{upload}}" class="img-fluid" /> -->
+                 <button class="btn" (click)="deleteImages(i)">❌</button>
+            </div>
+    </div>
+
+</div>

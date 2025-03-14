@@ -16,6 +16,7 @@ export class AboutComponent implements OnInit {
   searchInput = '';
   filterProducts: any[] = [];
   allProducts: any[] = [];
+
   ngOnInit(): void {
     this.http.get('https://fakestoreapi.com/products').subscribe((data) => {
       console.log(data);
@@ -26,7 +27,21 @@ export class AboutComponent implements OnInit {
 
   filteredProducts() {
     this.filterProducts = this.allProducts.filter((product) => {
-      return product.title.toLowerCase().includes(this.searchInput.toLowerCase());
+      return product.title
+        .toLowerCase()
+        .includes(this.searchInput.toLowerCase());
     });
+  }
+
+  sort(order: any) {
+    if (order === 'asc') {
+      this.filterProducts.sort((a, b) => {
+        return a.price - b.price;
+      });
+    } else {
+      this.filterProducts.sort((a, b) => {
+        return b.price - a.price;
+      });
+    }
   }
 }
