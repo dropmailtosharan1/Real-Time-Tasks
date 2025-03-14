@@ -1,0 +1,22 @@
+
+.product-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 -15px;
+    gap: 10px;
+}
+
+.p-card{
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px 0 gray;
+    padding: 15px;
+    margin: 10px 30px;
+    cursor: pointer;
+background-color: antiquewhite;
+}
+ 
+.input-group{
+    margin: 10px 30px;
+}

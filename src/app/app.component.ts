@@ -6,6 +6,7 @@ import { CrudComponent } from './crud/crud.component';
 import { NavigationEnd, RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { Router } from '@angular/router';
+import { AboutComponent } from "./components/about/about.component";
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,9 @@ import { Router } from '@angular/router';
     PopUpComponent,
     CommonModule,
     Test1Component,
-    HeaderComponent
-  ],
+    HeaderComponent,
+    AboutComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

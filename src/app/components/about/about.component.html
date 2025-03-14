@@ -1,1 +1,28 @@
-<p>about works!</p>
+<div class="p-card">
+  <p>Parent to Child</p>
+  <p>Contact is Parent Component</p>
+  <p>About-Us is Child Component</p>
+</div>
+
+<div class="input-group w-25 mt-5">
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="searchInput"
+    placeholder="Search Product"
+    (keyup)="filteredProducts()"
+  />
+  <div class="input-group-append">
+    <button class="btn btn-primary">Search</button>
+  </div>
+</div>
+
+<div class="product-list">
+  <ng-container *ngFor="let p of filterProducts">
+    <app-contact-us [product]="p"></app-contact-us>
+  </ng-container>
+</div>
+
+<div *ngIf="allProducts.length>0 && filterProducts.length === 0" class="alert alert-danger ms-50 m-2 w-50">
+  No Product Found!
+</div>
