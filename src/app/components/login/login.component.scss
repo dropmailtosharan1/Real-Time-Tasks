@@ -1,4 +1,22 @@
-.wrapper{
-    padding: 20px;
-    width: 50%;
-        margin: 0 auto;}
+.wrapper {
+  padding: 20px;
+  width: 50%;
+  margin: 0 auto;
+  background-color: bisque;
+  border-radius: 5px;
+}
+
+.form-group{
+    margin: 10px auto;
+}
+.actions{
+    display: flex;
+    justify-content: space-between;
+}
+
+.eye{
+    position: absolute;
+    bottom: 180px;
+    right: 350px;
+    cursor: pointer;
+}

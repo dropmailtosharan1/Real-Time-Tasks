@@ -1,20 +1,149 @@
 <div class="wrapper">
-    <a class="nav-link" [routerLink]="['/home']">
-        <button class="btn btn-secondary">Home</button>
-    </a>
-    <form>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+  <a class="nav-link" [routerLink]="['/home']">
+    <button class="btn btn-secondary">Home</button>
+  </a>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <h2 class="text-primary">Registration form using Reactive Forms</h2>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        formControlName="firstName"
+        placeholder="Enter Your First Name"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          (registrationForm.get('firstName')?.invalid &&
+            registrationForm.get('firstName')?.touched) ||
+          (submitted && registrationForm.get('firstName')?.invalid)
+        "
+      >
+        <div *ngIf="registrationForm.get('firstName')?.errors?.['required']">
+          First Name is required
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Enter Your Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        formControlName="lastName"
+        placeholder="Enter Your Last Name"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          (registrationForm.get('lastName')?.invalid &&
+            registrationForm.get('lastName')?.touched) ||
+          (submitted && registrationForm.get('lastName')?.invalid)
+        "
+      >
+        <div *ngIf="registrationForm.get('lastName')?.errors?.['required']">
+          Last Name is required
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="checkbox">
-          <label class="form-check-label" for="check-out">Check me out</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        placeholder="Enter Your Email"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          (registrationForm.get('email')?.invalid &&
+            registrationForm.get('email')?.touched) ||
+          (submitted && registrationForm.get('email')?.invalid)
+        "
+      >
+        <div *ngIf="registrationForm.get('email')?.errors?.['required']">
+          Email is required
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <div *ngIf="registrationForm.get('email')?.errors?.['email']">
+          invalid Email (Please enter correct email)
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+      [type]="showPassword ? 'text':'password'"
+        class="form-control"
+        id="password"
+        formControlName="password"
+        placeholder="Enter Your Password"
+      />
+      <i (click)="toggleShowPassword()" class="fa-regular fa-eye eye" *ngIf="!showPassword"></i>
+        <i (click)="toggleShowPassword()" class="fa-regular fa-eye-slash eye" *ngIf="showPassword"></i>
+        
+      <div
+        class="text-danger"
+        *ngIf="
+          (registrationForm.get('password')?.invalid &&
+            registrationForm.get('password')?.touched) ||
+          (submitted && registrationForm.get('password')?.invalid)
+        "
+      >
+        <div *ngIf="registrationForm.get('password')?.errors?.['required']">
+          Password is required
+        </div>
+        <div *ngIf="registrationForm.get('password')?.errors?.['minlength']">
+          Password is minimum 8 characters
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+      [type]="showPassword ? 'text':'password'"
+        class="form-control"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        placeholder="Confirm Your Password"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          (registrationForm.get('confirmPassword')?.invalid &&
+            registrationForm.get('confirmPassword')?.touched) ||
+          (submitted && registrationForm.get('confirmPassword')?.invalid)
+        "
+      >
+        <div
+          *ngIf="registrationForm.get('confirmPassword')?.errors?.['required']"
+        >
+          Confirm Password is required
+        </div>
+      </div>
+      <div class="text-danger"
+      *ngIf="registrationForm.errors?.['mismatch'] && (registrationForm.get('confirmPassword')?.touched || submitted)"
+    >
+      Passwords not matched
+    </div>
+     
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="checkbox" formControlName="acceptTerms" (change)="onCheckboxChange()"/>
+      <label class="form-check-label" for="check-out">Check me out</label>
+      <div class="text-danger" *ngIf="registrationForm.get('acceptTerms')?.invalid && (registrationForm.get('acceptTerms')?.touched || submitted)">
+        You must accept the terms and conditions
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="button" class="btn btn-warning" (click)="reset()">
+        Reset
+      </button>
+    </div>
+  </form>
 </div>
