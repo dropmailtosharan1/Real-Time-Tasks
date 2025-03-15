@@ -1,24 +1,22 @@
 import { Component } from '@angular/core';
-import { PopUpComponent } from './pop-up/pop-up.component';
 import { CommonModule } from '@angular/common';
-import { Test1Component } from './test1/test1.component';
-import { CrudComponent } from './crud/crud.component';
 import { NavigationEnd, RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { Router } from '@angular/router';
-import { AboutComponent } from "./components/about/about.component";
+import { TodoFormComponent } from './todo/todo-form/todo-form.component';
+import { TodoListComponent } from './todo/todo-list/todo-list.component';
+import { TableToExcelComponent } from './components/table-to-excel/table-to-excel.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterModule,
-    CrudComponent,
-    PopUpComponent,
     CommonModule,
-    Test1Component,
     HeaderComponent,
-    AboutComponent
+    TodoFormComponent,
+    TodoListComponent,
+    TableToExcelComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

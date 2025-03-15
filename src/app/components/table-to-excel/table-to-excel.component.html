@@ -1,0 +1,25 @@
+<div class="container m-5">
+    <h1 class="text-primary text-center">HTML table to Excel format</h1>
+
+    <table class="table table-striped" #table *ngIf="users.length > 0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.mobile}}</td>
+                <td>{{user.state}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary float-end" (click)="convertExcel()">Download Excel</button>
+</div>
