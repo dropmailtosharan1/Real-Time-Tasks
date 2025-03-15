@@ -12,6 +12,8 @@ import * as xls from 'xlsx';
 export class TableToExcelComponent {
   @ViewChild('table', { static: false }) table!: ElementRef;
 
+  userData:any[] = [];
+
   users = [
     {
       id: 1,
@@ -154,6 +156,23 @@ export class TableToExcelComponent {
       state: 'Goa',
     },
   ];
+
+  readExcelFile(event:any){
+    console.log(event.target.files[0]);
+    const file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+
+    reader.onload= () =>{
+      let data = reader.result;
+    let workbook =  xls.read(data, {type:'array'});
+     const sheet1 = workbook.SheetNames[0];
+     const worksheet = workbook.Sheets[sheet1];
+    this.userData= xls.utils.sheet_to_json(worksheet, {raw:true});
+    console.log(this.userData);
+    
+    }
+  }
 
   convertExcel() {
     const xlWorkbook = xls.utils.table_to_book(this.table.nativeElement);
